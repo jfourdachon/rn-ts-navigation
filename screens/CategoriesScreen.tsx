@@ -1,20 +1,28 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import { DefaultNavigationProps } from '../types';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const CategoriesScreen = () => {
-    return (
-        <View style={styles.screen}>
-            <Text>The categories screen</Text>
-        </View>
-    )
+
+interface Props {
+  navigation: DefaultNavigationProps<'Categories'>;
 }
 
-const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-})
+const CategoriesScreen = ({navigation}: Props) => {
+  return (
+    <SafeAreaView style={styles.screen}>
+      <Text>The categories screen</Text>
+      <Button title='Go to Details' onPress={() => {navigation.navigate('CategoryMeals')}} />
+    </SafeAreaView>
+  );
+};
 
-export default CategoriesScreen
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default CategoriesScreen;
