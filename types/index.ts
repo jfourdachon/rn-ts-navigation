@@ -1,6 +1,9 @@
-import { StackNavigationProp } from "@react-navigation/stack";
-import { DrawerScreenProps } from '@react-navigation/drawer';
-import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+// import { StackNavigationProp } from "@react-navigation/stack";
+// import { DrawerScreenProps } from '@react-navigation/drawer';
+// import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+
+import { NavigationStackProp } from 'react-navigation-stack';
+
 
 
 type StackParamList = {
@@ -17,7 +20,11 @@ type StackParamList = {
 
 export type DefaultNavigationProps<
     T extends keyof StackParamList
-    > = StackNavigationProp<StackParamList, T>;
+    > = NavigationStackProp<StackParamList, T>;
+
+// export type DefaultNavigationProps<
+//     T extends keyof StackParamList
+//     > = StackNavigationProp<StackParamList, T>;
 
 // export type DefaultDrawerNavigationProps<
 //     T extends keyof StackParamList

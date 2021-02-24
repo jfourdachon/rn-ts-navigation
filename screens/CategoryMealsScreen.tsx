@@ -12,7 +12,13 @@ const CategoryMealsScreen = ({ navigation }: Props) => {
       <Button
         title='Go to Details'
         onPress={() => {
-          navigation.push('MealDetail');
+          navigation.navigate('MealDetail');
+        }}
+      />
+      <Button
+        title='Go back'
+        onPress={() => {
+          navigation.goBack();
         }}
       />
     </View>
