@@ -1,14 +1,21 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { DefaultNavigationProps } from '../types';
+import { CATEGORIES } from '../data/dummy-data';
+import { NavigationStackOptions, NavigationStackProp } from 'react-navigation-stack';
 
-interface Props {
-  navigation: DefaultNavigationProps<'CategoryMeals'>;
-}
+
+type Props = {
+  navigation: NavigationStackProp<{ categoryId: string }>;
+};
+
+
 const CategoryMealsScreen = ({ navigation }: Props) => {
+  const catId = navigation.getParam('categoryId')
+  const selectedCategory = CATEGORIES.find(cat => cat.id === catId)
   return (
     <View style={styles.screen}>
       <Text>The category meal screen</Text>
+      <Text>{selectedCategory?.title}</Text>
       <Button
         title='Go to Details'
         onPress={() => {

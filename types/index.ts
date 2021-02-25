@@ -9,7 +9,7 @@ import { NavigationStackProp } from 'react-navigation-stack';
 type StackParamList = {
     default: undefined;
     Categories: undefined;
-    CategoryMeals: undefined;
+    CategoryMeals: {categoryId: string};
     MealDetail: undefined
     StackNavigator: undefined;
     DrawerNavigator: undefined;

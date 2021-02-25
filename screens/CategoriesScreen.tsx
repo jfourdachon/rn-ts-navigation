@@ -1,31 +1,47 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, FlatList, ViewBase } from 'react-native';
+import { View, Text, StyleSheet, Button, FlatList, ViewBase, PlatformColor, Platform } from 'react-native';
 import { DefaultNavigationProps } from '../types';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { CATEGORIES } from '../data/dummy-data'
+import { CATEGORIES } from '../data/dummy-data';
 import Category from '../models/category';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Colors from '../constants/Colors';
+import { NavigationStackProp } from 'react-navigation-stack';
+
+type Props = {
+  navigation: NavigationStackProp<'Categories'>;
+  navigationOptions: {}
+
+};
 
 
-interface Props {
-  navigation: DefaultNavigationProps<'Categories'>;
-}
 
 type ItemData = {
-    item: Category
-}
-
-
-const renderItem = (itemData: ItemData) => {
-    return (
-        <View style={styles.grid}><Text>{itemData.item.title}</Text></View>
-    )
-}
-
-const CategoriesScreen = ({navigation}: Props) => {
-  return (
-   <FlatList keyExtractor={(item : Category) => item.id} numColumns={2} data={CATEGORIES} renderItem={renderItem} />
-  );
+  item: Category;
 };
+
+const CategoriesScreen = ({ navigation }: Props) => {
+  const renderItem = (itemData: ItemData) => {
+    return (
+      <TouchableOpacity style={styles.grid} onPress={() => navigation.navigate('CategoryMeals', {
+          categoryId: itemData.item.id
+      })}>
+        <View>
+          <Text>{itemData.item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+  return <FlatList keyExtractor={(item: Category) => item.id} numColumns={2} data={CATEGORIES} renderItem={renderItem} />;
+};
+
+CategoriesScreen.navigationOptions = {
+    headerTitle: 'Meal Categories',
+    headerStyle: {
+        backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
+    },
+    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
+}
 
 const styles = StyleSheet.create({
   screen: {
@@ -34,10 +50,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   grid: {
-      flex: 1,
-      margin: 15,
-      height: 150
-  }
+    flex: 1,
+    margin: 15,
+    height: 150,
+  },
 });
 
 export default CategoriesScreen;
