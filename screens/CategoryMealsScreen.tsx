@@ -1,17 +1,16 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { CATEGORIES } from '../data/dummy-data';
-import { NavigationStackOptions, NavigationStackProp } from 'react-navigation-stack';
-
+import { NavigationStackProp } from 'react-navigation-stack';
 
 type Props = {
-  navigation: NavigationStackProp<{ categoryId: string }>;
+  navigation: NavigationStackProp<'CategoryMeals'>;
 };
 
 
-const CategoryMealsScreen = ({ navigation }: Props) => {
-  const catId = navigation.getParam('categoryId')
-  const selectedCategory = CATEGORIES.find(cat => cat.id === catId)
+const CategoryMealsScreen = ({navigation}: Props) => {
+  const catId = navigation.getParam('categoryId');
+  const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
   return (
     <View style={styles.screen}>
       <Text>The category meal screen</Text>
@@ -31,6 +30,16 @@ const CategoryMealsScreen = ({ navigation }: Props) => {
     </View>
   );
 };
+
+CategoryMealsScreen.navigationOptions = ({navigation}: Props) => {
+    const catId = navigation.getParam('categoryId');
+    const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
+    return {
+        headerTitle: selectedCategory?.title,
+    }
+   
+}
+
 
 const styles = StyleSheet.create({
   screen: {

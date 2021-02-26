@@ -1,16 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, FlatList, ViewBase, PlatformColor, Platform } from 'react-native';
-import { DefaultNavigationProps } from '../types';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { CATEGORIES } from '../data/dummy-data';
 import Category from '../models/category';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Colors from '../constants/Colors';
 import { NavigationStackProp } from 'react-navigation-stack';
 
 type Props = {
   navigation: NavigationStackProp<'Categories'>;
-  navigationOptions: {}
 
 };
 
@@ -34,14 +30,6 @@ const CategoriesScreen = ({ navigation }: Props) => {
   };
   return <FlatList keyExtractor={(item: Category) => item.id} numColumns={2} data={CATEGORIES} renderItem={renderItem} />;
 };
-
-CategoriesScreen.navigationOptions = {
-    headerTitle: 'Meal Categories',
-    headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
-    },
-    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
-}
 
 const styles = StyleSheet.create({
   screen: {
