@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { enableScreens } from 'react-native-screens';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import MealsNavigator from './navigation/MealsNavigator';
+
+enableScreens();
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -17,9 +19,5 @@ export default function App() {
   if (!fontLoaded) {
     return <AppLoading startAsync={fetchFonts} onFinish={() => setFontLoaded(true)} onError={(error) => console.log({ error })} />;
   }
-  return (
-      <MealsNavigator />
-  );
+  return <MealsNavigator />;
 }
-
-
