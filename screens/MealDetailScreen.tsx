@@ -1,7 +1,10 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons'
+
 import { MEALS } from '../data/dummy-data';
+import HeaderCustomButton from '../components/HeaderCustomButton';
 
 
 interface Props {
@@ -30,7 +33,8 @@ MealDetailScreen.navigationOptions = ({navigation}: Props) => {
     const mealId = navigation.getParam('mealId');
     const selectedMeal = MEALS.find(meal => meal.id === mealId)
     return {
-        headerTitle: selectedMeal?.title
+        headerTitle: selectedMeal?.title,
+        headerRight: <HeaderButtons HeaderButtonComponent={HeaderCustomButton}><Item title="Favorite" iconName="star" onPress={() => console.log('favorite')}/></HeaderButtons>,
     }
 }
 
