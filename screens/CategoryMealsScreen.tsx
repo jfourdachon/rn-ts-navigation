@@ -23,7 +23,9 @@ const CategoryMealsScreen = ({ navigation }: Props) => {
       ingredients={itemData.item.ingredients}
       imageUrl={itemData.item.imageUrl}
       steps={itemData.item.steps}
-      onSelectMeal={() => navigation.navigate('MealScreen')}
+      onSelectMeal={() => navigation.navigate('MealDetail', {
+          mealId: itemData.item.id
+      })}
     />
   );
 

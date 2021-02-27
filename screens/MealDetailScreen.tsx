@@ -1,15 +1,20 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { DefaultNavigationProps } from '../types';
+import { NavigationStackProp } from 'react-navigation-stack';
+import { MEALS } from '../data/dummy-data';
 
 
 interface Props {
-    navigation: DefaultNavigationProps<'MealDetail'>;
+    navigation: NavigationStackProp<'MealDetail'>;
   }
 const MealDetailScreen = ({navigation}: Props) => {
+
+  const mealId = navigation.getParam('mealId');
+  const selectedMeal = MEALS.find(meal => meal.id === mealId)
+
   return (
     <View style={styles.screen}>
-      <Text>The meal detail screen</Text>
+      <Text>{selectedMeal?.title}</Text>
       <Button
         title='Go to Home'
         onPress={() => {
@@ -19,6 +24,15 @@ const MealDetailScreen = ({navigation}: Props) => {
     </View>
   );
 };
+
+
+MealDetailScreen.navigationOptions = ({navigation}: Props) => {
+    const mealId = navigation.getParam('mealId');
+    const selectedMeal = MEALS.find(meal => meal.id === mealId)
+    return {
+        headerTitle: selectedMeal?.title
+    }
+}
 
 const styles = StyleSheet.create({
   screen: {

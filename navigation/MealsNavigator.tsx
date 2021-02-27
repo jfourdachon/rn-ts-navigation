@@ -1,5 +1,4 @@
-import React from 'react';
-import { createStackNavigator, NavigationStackScreenComponent } from 'react-navigation-stack';
+import { createStackNavigator, NavigationStackProp } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
@@ -17,7 +16,7 @@ const MealsNavigator = createStackNavigator(
       },
     },
     CategoryMeals: CategoryMealsScreen as any, // bug from typing component navigationOptions
-    MealDetail: MealDetailScreen,
+    MealDetail: MealDetailScreen as any,
   },
   {
     initialRouteName: 'Categories',
