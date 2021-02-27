@@ -1,6 +1,6 @@
 class Meal {
   id: string;
-  categoryId: string[];
+  categoryIds: string[];
   title: string;
   affordability: string;
   complexity: string;
@@ -15,7 +15,7 @@ class Meal {
 
   constructor(
     id: string,
-    categoryId: string[],
+    categoryIds: string[],
     title: string,
     affordability: string,
     complexity: string,
@@ -29,7 +29,7 @@ class Meal {
     isLactoseFree: boolean
   ) {
     this.id = id;
-    this.categoryId = categoryId;
+    this.categoryIds = categoryIds;
     this.title = title;
     this.affordability = affordability;
     this.complexity = complexity;
