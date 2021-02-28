@@ -4,38 +4,20 @@ import { CATEGORIES, MEALS } from '../data/dummy-data';
 import { NavigationStackProp } from 'react-navigation-stack';
 import Meal from '../models/meal';
 import MealItem from '../components/MealItem';
+import MealList from '../components/MealList';
 
 type Props = {
-  navigation: NavigationStackProp<'CategoryMeals'>;
+  navigation: NavigationStackProp;
 };
 
-type MealItemData = {
-  item: Meal;
-};
 
 const CategoryMealsScreen = ({ navigation }: Props) => {
-  const renderMealItem = (itemData: MealItemData) => (
-    <MealItem
-      title={itemData.item.title}
-      affordability={itemData.item.affordability}
-      complexity={itemData.item.complexity}
-      duration={itemData.item.duration}
-      ingredients={itemData.item.ingredients}
-      imageUrl={itemData.item.imageUrl}
-      steps={itemData.item.steps}
-      onSelectMeal={() => navigation.navigate('MealDetail', {
-          mealId: itemData.item.id
-      })}
-    />
-  );
 
   const catId = navigation.getParam('categoryId');
   const displayedMeals = MEALS.filter((meal) => meal.categoryIds.includes(catId));
 
   return (
-    <View style={styles.screen}>
-      <FlatList data={displayedMeals} keyExtractor={(item) => item.id} renderItem={renderMealItem} style={{width: '100%'}}/>
-    </View>
+   < MealList listData={displayedMeals} navigation={navigation}/>
   );
 };
 
