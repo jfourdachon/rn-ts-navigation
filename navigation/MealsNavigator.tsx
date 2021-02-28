@@ -26,13 +26,13 @@ const defaultStackNavigationOptions = {
 const MealsNavigator = createStackNavigator(
   {
     Categories: {
-      screen: CategoriesScreen as any,
+      screen: CategoriesScreen,
       navigationOptions: {
         headerTitle: 'Meal Categories',
       },
     },
-    CategoryMeals: CategoryMealsScreen as any, // bug from typing component navigationOptions
-    MealDetail: MealDetailScreen as any,
+    CategoryMeals: CategoryMealsScreen,
+    MealDetail: MealDetailScreen,
   },
   {
     initialRouteName: 'Categories',
@@ -48,7 +48,7 @@ const FavoriteMealsNavigator = createStackNavigator(
         headerTitle: 'Favorite meals',
       },
     },
-    MealDetail: MealDetailScreen as any,
+    MealDetail: MealDetailScreen,
   },
   {
     initialRouteName: 'Favorites',

@@ -1,16 +1,12 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { NavigationStackProp } from 'react-navigation-stack';
+import { NavigationStackProp, NavigationStackScreenComponent } from 'react-navigation-stack';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons'
 
 import { MEALS } from '../data/dummy-data';
 import HeaderCustomButton from '../components/HeaderCustomButton';
 
-
-interface Props {
-    navigation: NavigationStackProp<'MealDetail'>;
-  }
-const MealDetailScreen = ({navigation}: Props) => {
+const MealDetailScreen: NavigationStackScreenComponent = ({navigation}) => {
 
   const mealId = navigation.getParam('mealId');
   const selectedMeal = MEALS.find(meal => meal.id === mealId)
@@ -29,7 +25,7 @@ const MealDetailScreen = ({navigation}: Props) => {
 };
 
 
-MealDetailScreen.navigationOptions = ({navigation}: Props) => {
+MealDetailScreen.navigationOptions = ({navigation}) => {
     const mealId = navigation.getParam('mealId');
     const selectedMeal = MEALS.find(meal => meal.id === mealId)
     return {
