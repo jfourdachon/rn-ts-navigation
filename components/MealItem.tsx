@@ -1,6 +1,7 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import Meal from '../models/meal';
+import DefaultText from './DefaultText';
 import Touchable from './touchable/Touchable';
 
 type IProps = {
@@ -38,9 +39,9 @@ const MealItem = ({
             </ImageBackground>
           </View>
           <View style={[styles.mealRow, styles.mealDetails]}>
-            <Text>{duration}min</Text>
-            <Text>{complexity.toUpperCase()}</Text>
-            <Text>{affordability.toUpperCase()}</Text>
+            <DefaultText>{duration}min</DefaultText>
+            <DefaultText>{complexity.toUpperCase()}</DefaultText>
+            <DefaultText>{affordability.toUpperCase()}</DefaultText>
           </View>
         </View>
       </Touchable>
