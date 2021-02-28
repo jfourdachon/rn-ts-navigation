@@ -13,6 +13,13 @@ import { Platform } from 'react-native';
 import Colors from '../constants/Colors';
 import FavoritesScreen from '../screens/FavoritesScreen';
 
+const defaultStackNavigationOptions = {
+    headerStyle: {
+        backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
+      },
+      headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+}
+
 const MealsNavigator = createStackNavigator(
   {
     Categories: {
@@ -26,14 +33,25 @@ const MealsNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'Categories',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
-      },
-      headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
-    },
+    defaultNavigationOptions: defaultStackNavigationOptions,
   }
 );
+
+const FavoriteMealsNavigator = createStackNavigator(
+    {
+      Favorites: {
+        screen: FavoritesScreen,
+        navigationOptions: {
+          headerTitle: 'Favorite meals',
+        },
+      },
+      MealDetail: MealDetailScreen as any,
+    },
+    {
+      initialRouteName: 'Favorites',
+      defaultNavigationOptions: defaultStackNavigationOptions,
+    }
+  );
 
 type TabInfos = {
     tintColor:string
@@ -45,7 +63,7 @@ const tabScreenConfig = {
         },
         tabBarColor: Colors.primaryColor
     }},
-    Favorites: {screen: FavoritesScreen, navigationOptions: {
+    Favorites: {screen: FavoriteMealsNavigator, navigationOptions: {
         tabBarLabel: 'Favorites!',
         tabBarIcon: (tabInfo: TabInfos) => {
             return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor}/>
