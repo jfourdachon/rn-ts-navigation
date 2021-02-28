@@ -47,6 +47,11 @@ export const FavoriteMealsNavigator = createStackNavigator(
   }
 );
 
-export const FilterStackNavigator = createStackNavigator({
-  Filters: { screen: FiltersScreen, navigationOptions: { headerTitle: 'Filter Meals' } },
-});
+export const FilterStackNavigator = createStackNavigator(
+  {
+    Filters: { screen: FiltersScreen, navigationOptions: { headerTitle: 'Filter Meals' } },
+  },
+  {
+    defaultNavigationOptions: defaultStackNavigationOptions,
+  }
+);
