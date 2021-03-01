@@ -10,7 +10,7 @@ const CategoryMealsScreen: NavigationStackScreenComponent = ({ navigation }) => 
   const displayedMeals = MEALS.filter((meal) => meal.categoryIds.includes(catId));
 
   return (
-   < MealList listData={displayedMeals} navigation={navigation}/>
+   <MealList listData={displayedMeals} navigation={navigation}/>
   );
 };
 
