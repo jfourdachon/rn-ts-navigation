@@ -2,11 +2,10 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { CATEGORIES } from '../data/dummy-data';
 import Category from '../models/category';
-import { NavigationStackProp, NavigationStackScreenComponent } from 'react-navigation-stack';
+import { NavigationStackScreenComponent } from 'react-navigation-stack';
 import CategoryGridTile from '../components/CategoryGridTile';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderCustomButton'
-import { NavigationDrawerScreenProps } from 'react-navigation-drawer';
 
 
 type ItemData = {

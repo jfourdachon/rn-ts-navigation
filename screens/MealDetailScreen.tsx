@@ -1,13 +1,13 @@
 import React from 'react';
-import { Button, Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { NavigationStackProp, NavigationStackScreenComponent } from 'react-navigation-stack';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { NavigationStackScreenComponent } from 'react-navigation-stack';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import { MEALS } from '../data/dummy-data';
 import HeaderCustomButton from '../components/HeaderCustomButton';
 import DefaultText from '../components/DefaultText';
-import { FlatList } from 'react-native-gesture-handler';
-import Meal from '../models/meal';
+import { useSelector } from 'react-redux';
+import { ROOT_STATE } from '../store/combineReducers';
 
 type Props = {
   children: React.ReactNode;
@@ -21,7 +21,9 @@ const ListItem = ({ children }: Props) => (
 
 const MealDetailScreen: NavigationStackScreenComponent = ({ navigation }) => {
   const mealId = navigation.getParam('mealId');
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  const availableMeals = useSelector((state:  ROOT_STATE) => state.meals.meals)
+
+  const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
   return (
     <ScrollView>

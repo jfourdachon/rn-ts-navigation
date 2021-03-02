@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
-import { Platform, StyleSheet, Switch, SwitchBase, Text, View } from 'react-native';
+import { Platform, StyleSheet, Switch, Text, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { NavigationStackScreenComponent } from 'react-navigation-stack';
-import DefaultText from '../components/DefaultText';
 import HeaderButton from '../components/HeaderCustomButton';
 import Colors from '../constants/Colors';
 
@@ -31,12 +30,6 @@ const FiltersScreen: NavigationStackScreenComponent = ({ navigation }) => {
   const [isVegan, setIsVegan] = useState(false);
 
   const saveFilters = useCallback(() => {
-    const appliedFilters = {
-      glutenFree: isGlutenFree,
-      lactoseFree: isLactoseFree,
-      vegan: isVegan,
-      vegetarian: isVegetarian,
-    };
   }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
 
   
