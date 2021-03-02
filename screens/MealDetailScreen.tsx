@@ -25,6 +25,10 @@ const MealDetailScreen: NavigationStackScreenComponent = ({ navigation }) => {
 
   const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
+//   useEffect(() => {
+//     navigation.setParams({mealTitle: selectedMeal?.title})
+//   }, [selectedMeal])
+
   return (
     <ScrollView>
       <Image source={{ uri: selectedMeal?.imageUrl }} style={styles.image} />
@@ -47,10 +51,11 @@ const MealDetailScreen: NavigationStackScreenComponent = ({ navigation }) => {
 };
 
 MealDetailScreen.navigationOptions = ({ navigation }) => {
-  const mealId = navigation.getParam('mealId');
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+//   const mealId = navigation.getParam('mealId');
+  const mealTitle = navigation.getParam('mealtitle')
+//   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
   return {
-    headerTitle: selectedMeal?.title,
+    headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderCustomButton}>
         <Item title='Favorite' iconName='ios-star' />
