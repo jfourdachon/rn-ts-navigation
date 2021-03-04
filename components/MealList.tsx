@@ -2,13 +2,14 @@ import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { List } from 'react-native-paper';
 import { NavigationStackProp } from 'react-navigation-stack';
+import { useSelector } from 'react-redux';
 import Meal from '../models/meal';
+import { ROOT_STATE } from '../store/combineReducers';
 import MealItem from './MealItem';
 
 type MealItemData = {
   item: Meal;
 };
-
 
 type Props = {
   navigation: NavigationStackProp;
@@ -16,23 +17,28 @@ type Props = {
 };
 
 const MealList = ({ navigation, listData }: Props) => {
-  const renderMealItem = (itemData: MealItemData,) => (
-    <MealItem
-      title={itemData.item.title}
-      affordability={itemData.item.affordability}
-      complexity={itemData.item.complexity}
-      duration={itemData.item.duration}
-      ingredients={itemData.item.ingredients}
-      imageUrl={itemData.item.imageUrl}
-      steps={itemData.item.steps}
-      onSelectMeal={() =>
-        navigation.navigate('MealDetail', {
-          mealId: itemData.item.id,
-          mealTitle: itemData.item.title
-        })
-      }
-    />
-  );
+  const favoriteMeals = useSelector((state: ROOT_STATE) => state.meals.favoriteMeals);
+  const renderMealItem = (itemData: MealItemData) => {
+    const isFavorite = favoriteMeals.some((meal) => meal.id === itemData.item.id);
+    return (
+      <MealItem
+        title={itemData.item.title}
+        affordability={itemData.item.affordability}
+        complexity={itemData.item.complexity}
+        duration={itemData.item.duration}
+        ingredients={itemData.item.ingredients}
+        imageUrl={itemData.item.imageUrl}
+        steps={itemData.item.steps}
+        onSelectMeal={() =>
+          navigation.navigate('MealDetail', {
+            mealId: itemData.item.id,
+            mealTitle: itemData.item.title,
+            isFav: isFavorite,
+          })
+        }
+      />
+    );
+  };
   return (
     <View style={styles.list}>
       <FlatList
