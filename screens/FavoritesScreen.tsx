@@ -14,9 +14,9 @@ const FavoritesScreen: NavigationStackScreenComponent = ({navigation}) => {
   const favMeals = useSelector((state:  ROOT_STATE) => state.meals.favoriteMeals)
 
 
-    const favoriteMeals = favMeals.filter(meal => meal.id === 'm1' || meal.id === 'm2')
+    // const favoriteMeals = favMeals.filter(meal => meal.id === 'm1' || meal.id === 'm2')
   return (
-    <MealList navigation={navigation} listData={favoriteMeals}/>
+    <MealList navigation={navigation} listData={favMeals}/>
   );
 };
 
