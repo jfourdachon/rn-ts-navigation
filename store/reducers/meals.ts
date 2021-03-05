@@ -1,4 +1,4 @@
-import {MEALS} from '../../data/dummy-data'
+import { MEALS } from '../../data/dummy-data'
 import Meal from '../../models/meal'
 import { TOGGLE_FAVORITE } from '../actions/meals'
 
@@ -6,7 +6,7 @@ import { TOGGLE_FAVORITE } from '../actions/meals'
 export type MEAL_STATE = {
     meals: Meal[],
     fileredMeals: Meal[],
-    favoriteMeals: Meal[] 
+    favoriteMeals: Meal[]
 }
 
 const initialState = {
@@ -16,7 +16,7 @@ const initialState = {
 }
 
 const mealsReducer = (state = initialState, action: any) => {
-    switch(action.type) {
+    switch (action.type) {
         case TOGGLE_FAVORITE:
             const existingIndex: number = state.favoriteMeals.findIndex((meal: Meal) => meal.id === action.mealId)
             if (existingIndex >= 0) {
@@ -24,14 +24,14 @@ const mealsReducer = (state = initialState, action: any) => {
 
                 const updatedFavMeals = [...state.favoriteMeals]
                 updatedFavMeals.splice(existingIndex, 1)
-                return {...state, favoriteMeals: updatedFavMeals }
+                return { ...state, favoriteMeals: updatedFavMeals }
             } else {
                 console.log('yo')
-                const meal = state.meals.find((meal:Meal) => meal.id === action.mealId)                
-                return {...state, favoriteMeals: state.favoriteMeals.concat(meal as any)}
+                const meal = state.meals.find((meal: Meal) => meal.id === action.mealId)
+                return { ...state, favoriteMeals: state.favoriteMeals.concat(meal as any) }
             }
-            default:
-                return state
+        default:
+            return state
     }
 
 
