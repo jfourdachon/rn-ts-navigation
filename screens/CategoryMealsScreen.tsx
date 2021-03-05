@@ -9,7 +9,7 @@ const CategoryMealsScreen: NavigationStackScreenComponent = ({ navigation }) => 
 
   const catId = navigation.getParam('categoryId');
 
-  const availableMeals = useSelector((state:  ROOT_STATE) => state.meals.fileredMeals)
+  const availableMeals = useSelector((state:  ROOT_STATE) => state.meals.filteredMeals)
   const displayedMeals = availableMeals.filter((meal) => meal.categoryIds.includes(catId));
 
   return (

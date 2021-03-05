@@ -5,13 +5,13 @@ import { SET_FILTERS, TOGGLE_FAVORITE } from '../actions/meals'
 
 export type MEAL_STATE = {
     meals: Meal[],
-    fileredMeals: Meal[],
+    filteredMeals: Meal[],
     favoriteMeals: Meal[]
 }
 
 const initialState = {
     meals: MEALS,
-    fileredMeals: MEALS,
+    filteredMeals: MEALS,
     favoriteMeals: []
 }
 
